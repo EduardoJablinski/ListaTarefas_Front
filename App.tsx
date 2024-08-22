@@ -1,5 +1,5 @@
 import React from 'react';
-import { NativeBaseProvider } from 'native-base'; // Importando NativeBaseProvider
+import { NativeBaseProvider } from 'native-base'; // import do nativeBaseProvider
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './src/screens/LoginScreen';
@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NativeBaseProvider> {/* Envolvendo o aplicativo com NativeBaseProvider */}
+    <NativeBaseProvider> {/* native base provider */}
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={LoginScreen} />
