@@ -1,13 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// Interface que define a estrutura de uma tarefa
+// interface que define a estrutura de uma tarefa
 interface Tarefa {
   id: number;
   tarefa: string;
 }
 
-// Interface que define o contexto global de estado
+// interface que define o contexto global de estado
 interface ContextoEstadoGlobal {
   tarefas: Tarefa[];
   adicionarTarefa: (tarefa: string) => void;
@@ -15,7 +15,7 @@ interface ContextoEstadoGlobal {
   excluirTarefa: (id: number) => void;
 }
 
-// Cria o contexto global de estado
+// contexto global de estado
 const ContextoEstadoGlobal = createContext<ContextoEstadoGlobal>({
   tarefas: [],
   adicionarTarefa: () => { },
@@ -23,15 +23,15 @@ const ContextoEstadoGlobal = createContext<ContextoEstadoGlobal>({
   excluirTarefa: () => { },
 });
 
-// Hook para acessar o contexto global de estado
+// hook que acessa o contexto global de estado
 export const useEstadoGlobal = () => useContext(ContextoEstadoGlobal);
 
-// Componente que fornece o contexto global de estado para seus filhos
+// fornece o contexto global de estado para seus filhos
 export const ProvedorEstadoGlobal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Define o estado inicial das tarefas
   const [tarefas, setTarefas] = useState<Tarefa[]>([]);
 
-  // Função para carregar as tarefas do backend
+  // função que carregaa as tarefas do backend
   const carregarTarefas = async () => {
     const token = await AsyncStorage.getItem('token');
     try {
@@ -53,7 +53,7 @@ export const ProvedorEstadoGlobal: React.FC<{ children: React.ReactNode }> = ({ 
     }
   };
 
-  // Função para adicionar uma nova tarefa
+  // adiciona uma nova tarefa
   const adicionarTarefa = async (tarefa: string) => {
     const token = await AsyncStorage.getItem('token');
     try {
@@ -73,7 +73,7 @@ export const ProvedorEstadoGlobal: React.FC<{ children: React.ReactNode }> = ({ 
       const data = await response.json();
       console.log('Nova tarefa adicionada:', data);
 
-      // Atualiza o estado das tarefas com a nova tarefa
+      // atualiza o estado das tarefas com a nova task
       setTarefas([...tarefas, data]);
 
     } catch (error) {
@@ -81,7 +81,7 @@ export const ProvedorEstadoGlobal: React.FC<{ children: React.ReactNode }> = ({ 
     }
   };
 
-  // Função para editar o título de uma tarefa
+  // edita o título da task
   const editarTarefa = async (id: number, novoTitulo: string) => {
     const token = await AsyncStorage.getItem('token');
     try {
@@ -100,7 +100,7 @@ export const ProvedorEstadoGlobal: React.FC<{ children: React.ReactNode }> = ({ 
 
       console.log('Tarefa editada com sucesso');
 
-      // Atualiza o estado das tarefas após a edição
+      // atualiza o estado da task
       const novasTarefas = tarefas.map(tarefa =>
         tarefa.id === id ? { ...tarefa, tarefa: novoTitulo } : tarefa
       );
@@ -111,7 +111,7 @@ export const ProvedorEstadoGlobal: React.FC<{ children: React.ReactNode }> = ({ 
     }
   };
 
-  // Função para excluir uma tarefa
+  // exclui a task
   const excluirTarefa = async (id: number) => {
     const token = await AsyncStorage.getItem('token');
     try {
@@ -129,7 +129,7 @@ export const ProvedorEstadoGlobal: React.FC<{ children: React.ReactNode }> = ({ 
 
       console.log('Tarefa excluída com sucesso');
 
-      // Atualiza o estado das tarefas após a exclusão
+      // atualiza a o estado da task apos exclusao
       const novasTarefas = tarefas.filter(tarefa => tarefa.id !== id);
       setTarefas(novasTarefas);
 
@@ -138,12 +138,12 @@ export const ProvedorEstadoGlobal: React.FC<{ children: React.ReactNode }> = ({ 
     }
   };
 
-  // Carrega as tarefas do backend na inicialização
+  // carregando as tasks do backend 
   useEffect(() => {
     carregarTarefas();
   }, []);
 
-  // Retorna o contexto global de estado com as funções para manipular as tarefas
+  // retorna o contexto global de estado com as funções p manipulação as task
   return (
     <ContextoEstadoGlobal.Provider value={{ tarefas, adicionarTarefa, editarTarefa, excluirTarefa }}>
       {children}

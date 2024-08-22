@@ -15,11 +15,11 @@ const AdicionarTarefa: React.FC = () => {
   };
 
   return (
-    <View style={{ backgroundColor: '#402291', paddingVertical: 20, paddingHorizontal: 20, paddingTop: 50 }}>
+    <View style={{ backgroundColor: '#525252', paddingVertical: 20, paddingHorizontal: 20, paddingTop: 50 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View style={{ flex: 1, marginRight: 10 }}>
           <Input
-            placeholder="Digite uma tarefa"
+            placeholder="insira uma task"
             placeholderTextColor="white"
             value={novaTarefa}
             onChangeText={setNovaTarefa}
@@ -30,7 +30,7 @@ const AdicionarTarefa: React.FC = () => {
         <IconButton
           icon={<Ionicons name="add" size={24} color="#402291" />}
           onPress={handleAdicionarTarefa}
-          style={{ borderRadius: 50, backgroundColor: 'gold' }}
+          style={{ borderRadius: 50, backgroundColor: 'gray' }}
         />
       </View>
     </View>

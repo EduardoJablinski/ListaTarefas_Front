@@ -6,14 +6,14 @@ import { ProvedorEstadoGlobal } from '../hooks/EstadoGlobal';
 import AdicionarTarefa from '../components/AdicionarTarefa';
 import ListaTarefas from '../components/ListaTarefas';
 
-// Definimos aqui o tipo para a propriedade navigation
+// definindo navegação
 type HomeScreenProps = {
   navigation: NativeStackNavigationProp<any>;
 };
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const handleLogout = () => {
-    // Ao clicar no botão de logout, navegamos para a tela de login para que o usuário possa fazer login novamente
+    // implementação da navegação
     navigation.navigate('Login');
   };
 
@@ -21,9 +21,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
    <NativeBaseProvider>
    <ProvedorEstadoGlobal>
      <View style={{ flex: 1 }}>
-       {/* Componente para adicionar tarefas */}
+       {/* componente p adicionar tarefas */}
        <AdicionarTarefa />
-       {/* Componente que lista as tarefas */}
+       {/* componente q lista as tarefas */}
        <ListaTarefas />
      </View>
    </ProvedorEstadoGlobal>
